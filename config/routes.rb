@@ -4,5 +4,6 @@ Rails.application.routes.draw do
 
   resources :courses
   resources :transactions
+  resources :payments, only: [:new, :create]
 
 end

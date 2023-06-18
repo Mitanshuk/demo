@@ -1,4 +1,5 @@
 class TransactionsController < ApplicationController
+  require 'razorpay'
     before_action :set_transaction, only: [:show, :edit, :update, :destroy]
 
     def index
@@ -13,15 +14,18 @@ class TransactionsController < ApplicationController
     end
 
     def create
-        @transaction = Transaction.new(transaction_params)
-        @transaction.student_id = current_user.id
-
-        if @transaction.save
-          redirect_to transactions_path, notice: 'Transaction was successfully created.'
-        else
-          render :new
-        end
+      @transaction = Transaction.new(transaction_params)
+      @transaction.student_id = current_user.id
+  
+      if @transaction.save
+        order = create_razorpay_order(@transaction.amount, @transaction.currency)
+        @transaction.update(razorpay_order_id: order.id)
+  
+        redirect_to payment_path(@transaction)
+      else
+        render :new
       end
+    end
 
     def edit
     end
@@ -47,5 +51,12 @@ class TransactionsController < ApplicationController
 
     def transaction_params
       params.require(:transaction).permit(:course_id, :student_id, :tutor_id, :status)
+    end
+
+    def create_razorpay_order(amount, currency)
+      client = Razorpay::Client.new(api_key: 'rzp_test_rxec7qHsjX5qSE', api_secret: 'Jbe2HGHVd3qPVaRdyL7w3oCQ')
+      order = client.order.create(amount: amount, currency: currency)
+  
+      order
     end
   end

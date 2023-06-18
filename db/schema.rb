@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_133615) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_18_130453) do
   create_table "courses", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.decimal "price"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -27,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_133615) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "order_id"
     t.index ["course_id"], name: "index_transactions_on_course_id"
     t.index ["student_id"], name: "index_transactions_on_student_id"
     t.index ["tutor_id"], name: "index_transactions_on_tutor_id"

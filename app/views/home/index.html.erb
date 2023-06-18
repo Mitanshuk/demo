@@ -4,19 +4,22 @@
 
   <ul>
     <% @courses.each do |course| %>
-      <% unless current_user.transactions.exists?(course_id: course.id) %>
-        <section>
-          <h3><%= course.title %></h3>
-          <%= course.description %>
-          <%= form_with(model: Transaction.new, url: transactions_path, method: :post) do |form| %>
+      <section>
+        <h3><%= course.title %></h3>
+        <%= course.description %>
+ 
+          <%= form_with(model: Transaction.new, url: transactions_path, method: :post, id: "transaction-form") do |form| %>
             <%= form.hidden_field :course_id, value: course.id %>
             <%= form.hidden_field :tutor_id, value: course.user_id %>
             <%= form.hidden_field :student_id, value: current_user.id %>
-            <%= form.submit "Buy Course" %>
+            <%= form.hidden_field :amount, value: (course.price * 100).to_i %>
+            <%= form.hidden_field :currency, value: 'INR' %>
+
+            <%= form.submit "Buy Course", id: "razorpay-button" %>
           <% end %>
-        </section>
-        <wbr>
-      <% end %>
+
+      </section>
+      <wbr>
     <% end %>
   </ul>
 <% else %>

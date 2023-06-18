@@ -95,6 +95,9 @@ GEM
     erubi (1.12.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (1.1.6)
@@ -115,9 +118,9 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.2)
     minitest (5.18.0)
     msgpack (1.7.1)
+    multi_xml (0.6.0)
     net-imap (0.3.6)
       date
       net-protocol
@@ -128,8 +131,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     nio4r (2.5.9)
-    nokogiri (1.15.2)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.15.2-x64-mingw32)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     public_suffix (5.0.1)
@@ -167,6 +169,8 @@ GEM
       thor (~> 1.0)
       zeitwerk (~> 2.5)
     rake (13.0.6)
+    razorpay (3.0.0)
+      httparty (~> 0.14)
     regexp_parser (2.8.1)
     responders (3.1.0)
       actionpack (>= 5.2)
@@ -184,8 +188,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.6.3)
-      mini_portile2 (~> 2.8.0)
+    sqlite3 (1.6.3-x64-mingw32)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.2)
@@ -196,6 +199,8 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    tzinfo-data (1.2023.3)
+      tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.0)
@@ -216,7 +221,7 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
-  ruby
+  x64-mingw32
 
 DEPENDENCIES
   bootsnap
@@ -227,6 +232,7 @@ DEPENDENCIES
   jbuilder
   puma (~> 5.0)
   rails (~> 7.0.5)
+  razorpay
   selenium-webdriver
   sprockets-rails
   sqlite3 (~> 1.4)
@@ -237,7 +243,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.0.6p216
 
 BUNDLED WITH
-   2.2.3
+   2.4.13
